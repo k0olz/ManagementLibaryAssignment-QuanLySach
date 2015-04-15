@@ -5,33 +5,41 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="Css/Style.css">
         <title>JSP Page</title>
     </head>
     <body>
-       <center> 
-        <table border="1" style="text-align: left">
-            <h2>WELCOME TO MY LIBRARY</h2> 
-            <c:forEach items="${requestScope.listBook}" var="book">
+        <a href="Index.jsp">Đăng xuất</a>
+    <center><h2 style="color: red">WELCOME TO MY LIBRARY</h2>
+    <table border="2"  style="text-align: left">
+            <c:forEach items="${requestScope['listBook']}" var="book" >
                 <tr>
                     <td>
                         <!--hiển thị ảnh-->
-                        <img src="${book.img}"/>
+                        <img src="${book.img}" width="235px" height="330px"/>
                     </td>
                     <td>
-                        <p>Id</p> ${book.id}</br>
-                        <p>Tên sách</p> ${book.name}</br
-                        <p>Tác giả</p> ${book.author}</br>
-                        <p>giá</p> ${book.price}</br>
-                        <p>Mô tả chi tiết</p> ${book.description}</br>
+                        <b> Mã sách : </b> ${book.id}</br></br>
+                        
+                        <b> Tên sách : </b> ${book.name}</br></br>
+                        
+                        <b> Tác giả : </b> ${book.author}</br></br>
+                        
+                        <b> giá : </b> ${book.price}</br></br>
+                        
+                        <b> Mô tả chi tiết : </b> ${book.description}</br></br>
+                        
+                        <a href="BorrowBooks?id=${book.id}">Mượn Sách</a>
                     </td>
                 </tr>
             </c:forEach>
         </table>
     </center>
-        <a href="Index.jsp">Đăng xuất</a> 
+        
     </body>
 </html>
