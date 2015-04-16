@@ -10,12 +10,15 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="Css/Style.css">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="Css/Cart.css">
+        <title>Home page</title>
     </head>
     <body>
         <a href="Index.jsp">Đăng xuất</a>
-    <center><h2 style="color: red">WELCOME TO MY LIBRARY</h2>
+        <div class="giohang"><p class="text">Hiện tại trong giỏ hàng của bạn có (${sessionScope['total']}) sách được thuê</p></br></div>
+        
+    <center>
+        <h2 style="color: red">WELCOME TO MY LIBRARY</h2>
     <table border="2"  style="text-align: left">
             <c:forEach items="${requestScope['listBook']}" var="book" >
                 <tr>

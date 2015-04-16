@@ -16,6 +16,10 @@
         <servlet-name>LoadBook</servlet-name>
         <servlet-class>fpt.login.LoadBook</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BorrowProcess1</servlet-name>
+        <servlet-class>fpt.login.BorrowProcess1</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>LoadBook</servlet-name>
         <url-pattern>/LoadBook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BorrowProcess1</servlet-name>
+        <url-pattern>/BorrowProcess1</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -9,11 +9,13 @@ import Controller.BookDAO;
 import bean.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,6 +37,14 @@ public class LoadBook extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         List<Book> listDB = new BookDAO().getAllBook();
         request.setAttribute("listBook", listDB);
+         
+        //xu ly hien thi so sach da thue trong gio hang
+//        
+        HttpSession session = request.getSession();
+        HashMap<String,Integer> listBorrow = (HashMap<String,Integer>)session.getAttribute("listBuy");
+//        
+        session.setAttribute("total",listBorrow);
+        
         request.getRequestDispatcher("home.jsp").forward(request, response);
     
     }

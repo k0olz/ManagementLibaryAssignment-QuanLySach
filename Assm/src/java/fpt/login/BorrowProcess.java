@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import fpt.login.LoadBook;
 
 /**
  *
@@ -36,14 +37,15 @@ public class BorrowProcess extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        
         String id = request.getParameter("id");
         Integer numberOfBook = Integer.parseInt(request.getParameter("number"));
         
         //not validate data input
         HttpSession session = request.getSession();
-        HashMap<String,Integer> listBorrow = (HashMap<String, Integer>)session.getAttribute("listBorrow");
+        HashMap<String,Integer> listBorrow = (HashMap<String,Integer>)session.getAttribute("listBorrows");
         
-        if (listBorrow ==null) {
+        if (listBorrow == null) {
             //chua co quyen nao
             listBorrow = new HashMap<>();
             listBorrow.put(id, numberOfBook);
@@ -54,15 +56,13 @@ public class BorrowProcess extends HttpServlet {
             while (it.hasNext()) {
                 String idChosen = it.next();
                 if (idChosen.equals(id)) {
-                    Integer numberChosen = listBorrow.get(idChosen) +numberOfBook;
+                    Integer numberChosen = listBorrow.get(idChosen) + numberOfBook;
                     listBorrow.remove(idChosen);
                     listBorrow.put(idChosen , numberChosen);
-                    
                 }
-                
             }
         }
-        session.setAttribute("listBorrow", listBorrow);
+        session.setAttribute("listBorrows", listBorrow);
         request.getRequestDispatcher("LoadBook").forward(request, response);
     }
 
