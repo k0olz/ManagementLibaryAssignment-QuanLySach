@@ -47,6 +47,33 @@ public class BookDAO {
         }
         return list;
     }
+    public Book getBookById(String id){
+        Book b = null;
+          Connection con;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        con = DAO.DataProcess.getConnection();
+        
+        try {
+            ps = con.prepareStatement("Select * from BookStore where id=?");
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                b = new Book();
+                b.setId(rs.getString(1));
+                b.setName(rs.getString(2));
+                b.setAuthor(rs.getString(3));
+                b.setPrice(rs.getFloat(4));
+                b.setDescription(rs.getString(5));
+                b.setImg(rs.getString(6));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            DAO.DataProcess.closeAll(con, ps, rs);
+        }
+        return b;
     
+    }
     
 }

@@ -5,11 +5,11 @@
  */
 package fpt.login;
 
-import Controller.BookDAO;
-import bean.Book;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author Administrator
  */
-@WebServlet(name = "BorrowBooks", urlPatterns = {"/BorrowBooks"})
-public class BorrowBooks extends HttpServlet {
+@WebServlet(name = "BorrowProcess", urlPatterns = {"/BorrowProcess"})
+public class BorrowProcess extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,9 +37,33 @@ public class BorrowBooks extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("id");
-       Book b = new BookDAO().getBookById(id);
-       request.setAttribute("book", b);
-       request.getRequestDispatcher("ToBorrow.jsp").forward(request, response);
+        Integer numberOfBook = Integer.parseInt(request.getParameter("number"));
+        
+        //not validate data input
+        HttpSession session = request.getSession();
+        HashMap<String,Integer> listBorrow = (HashMap<String, Integer>)session.getAttribute("listBorrow");
+        
+        if (listBorrow ==null) {
+            //chua co quyen nao
+            listBorrow = new HashMap<>();
+            listBorrow.put(id, numberOfBook);
+        }else{
+            //da duoc chon thue
+            Set<String> lsId = listBorrow.keySet();
+            Iterator<String> it = lsId.iterator();
+            while (it.hasNext()) {
+                String idChosen = it.next();
+                if (idChosen.equals(id)) {
+                    Integer numberChosen = listBorrow.get(idChosen) +numberOfBook;
+                    listBorrow.remove(idChosen);
+                    listBorrow.put(idChosen , numberChosen);
+                    
+                }
+                
+            }
+        }
+        session.setAttribute("listBorrow", listBorrow);
+        request.getRequestDispatcher("LoadBook").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
