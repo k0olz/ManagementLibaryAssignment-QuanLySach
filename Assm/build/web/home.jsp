@@ -15,11 +15,14 @@
     </head>
     <body>
         <a href="Logout">Đăng xuất</a>
-        <form action="search">
-            <input name="key"/>
-            <input type="submit"/>
-        </form>
-        <div class="giohang"><p class="text">Hiện tại trong giỏ hàng của bạn có (${sessionScope['total']}) sách được thuê</p></br></div>
+        <form style="text-align: center" action="search">
+                <input name="key"/>
+                <input type="submit"/>
+            </form>
+        <div class="giohang">
+                <p class="text">Hiện tại trong giỏ hàng của bạn có (${sessionScope['total']}) sách được thuê</p></br></br>
+                <p class="text"><a href="showCart">View Cart</a></p>
+        </div>
         
     <center>
         <h2 style="color: red">WELCOME TO MY LIBRARY</h2>

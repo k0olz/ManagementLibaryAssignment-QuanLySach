@@ -28,6 +28,10 @@
         <servlet-name>SearchById1</servlet-name>
         <servlet-class>fpt.login.SearchById1</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>showCart</servlet-name>
+        <servlet-class>fpt.login.showCart</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginUser</servlet-name>
         <url-pattern>/LoginUser</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>SearchById1</servlet-name>
         <url-pattern>/Search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showCart</servlet-name>
+        <url-pattern>/showCart</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
