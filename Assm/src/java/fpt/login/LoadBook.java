@@ -41,7 +41,7 @@ public class LoadBook extends HttpServlet {
         //xu ly hien thi so sach da thue trong gio hang
 //        
         HttpSession session = request.getSession();
-        HashMap<String,Integer> listBorrow = (HashMap<String,Integer>)session.getAttribute("listBuy");
+        HashMap<String,Integer> listBorrow = (HashMap<String,Integer>)session.getAttribute("listBorrows");
 //        
         session.setAttribute("total",listBorrow);
         

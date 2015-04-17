@@ -14,7 +14,11 @@
         <title>Home page</title>
     </head>
     <body>
-        <a href="Index.jsp">Đăng xuất</a>
+        <a href="Logout">Đăng xuất</a>
+        <form action="search">
+            <input name="key"/>
+            <input type="submit"/>
+        </form>
         <div class="giohang"><p class="text">Hiện tại trong giỏ hàng của bạn có (${sessionScope['total']}) sách được thuê</p></br></div>
         
     <center>
