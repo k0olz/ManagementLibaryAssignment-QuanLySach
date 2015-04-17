@@ -53,13 +53,19 @@ public class BorrowProcess extends HttpServlet {
             //da duoc chon thue
             Set<String> lsId = listBorrow.keySet();
             Iterator<String> it = lsId.iterator();
+            boolean bl = false;
             while (it.hasNext()) {
                 String idChosen = it.next();
                 if (idChosen.equals(id)) {
                     Integer numberChosen = listBorrow.get(idChosen) + numberOfBook;
                     listBorrow.remove(idChosen);
                     listBorrow.put(idChosen , numberChosen);
+                    bl = true;
+                    break;
                 }
+            }
+            if (!bl) {
+                listBorrow.put(id, numberOfBook);
             }
         }
         session.setAttribute("listBorrows", listBorrow);

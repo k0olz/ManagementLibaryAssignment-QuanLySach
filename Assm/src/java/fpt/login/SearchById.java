@@ -46,29 +46,29 @@ public class SearchById extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-//            Connection con;
-//            PreparedStatement ps = null;
-//            ResultSet rs = null;
-//            con = DAO.DataProcess.getConnection();
-//            
-//            try {
-//                ps = con.prepareStatement("Select id, name from BookStore where id like ?");
-//                 String key = request.getParameter("key");
-//                 ps.setString(1, "%"+ key +"%");
-//                 rs = ps.executeQuery();
-//                 //processing
-//                 while(rs.next()){
-//                     out.println(rs.getString("id"));
-//                 }
-//            } catch (SQLException ex) {
-//                Logger.getLogger(SearchById.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//           finally{
-//            DAO.DataProcess.closeAll(con, ps, rs);
-//        }
-//            out.println("</body>");
-//            out.println("</html>");
-//        }
+            Connection con;
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            con = DAO.DataProcess.getConnection();
+            
+            try {
+                ps = con.prepareStatement("Select id, name from BookStore where id like ?");
+                 String key = request.getParameter("key");
+                 ps.setString(1, "%"+ key +"%");
+                 rs = ps.executeQuery();
+                 //processing
+                 while(rs.next()){
+                     out.println(rs.getString("id"));
+                 }
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchById.class.getName()).log(Level.SEVERE, null, ex);
+            }
+           finally{
+            DAO.DataProcess.closeAll(con, ps, rs);
+        }
+            out.println("</body>");
+            out.println("</html>");
+        }
     }
 
 }

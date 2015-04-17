@@ -39,11 +39,14 @@ public class LoadBook extends HttpServlet {
         request.setAttribute("listBook", listDB);
          
         //xu ly hien thi so sach da thue trong gio hang
-//        
         HttpSession session = request.getSession();
         HashMap<String,Integer> listBorrow = (HashMap<String,Integer>)session.getAttribute("listBorrows");
-//        
-        session.setAttribute("total",listBorrow);
+        if (listBorrow !=null) {
+            session.setAttribute("total", listBorrow.toString());
+        }else{
+            session.setAttribute("total","0");
+        }
+        
         
         request.getRequestDispatcher("home.jsp").forward(request, response);
     
